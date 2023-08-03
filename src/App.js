@@ -1,57 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import tasksReducer from './redux/reducers'; // Importing the tasksReducer.
+import AddTask from './components/AddTask'; // Importing the AddTask component.
+import ListTask from './components/ListTask'; // Importing the ListTask component.
+
+const store = createStore(tasksReducer); // Creating the Redux store with the tasksReducer.
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Provider store={store}> {/* Providing the Redux store to the entire application */}
+      <div style={{  background: 'linear-gradient(to left, #0d9488, #2dd4bf)', margin: '45px', height: '40rem', padding: '2px 50px 60px 36rem'}}>
+        <h1>Todo List App</h1>
+        <AddTask />
+        <ListTask />
+      </div>
+    </Provider>
   );
 }
 
